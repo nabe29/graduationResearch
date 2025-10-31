@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Flaskテキスト送信</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <h1>文字列を送信</h1>
+    <input type="text" id="inputText" placeholder="文字を入力してください">
+    <button onclick="sendText()">送信</button>
+
+    <p id="result"></p>
+
+    <script>
+        async function sendText() {
+            const text = document.getElementById("inputText").value;
+
+            // FlaskにPOSTで送信（JSON形式）
+            const res = await fetch("/send", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ text }),
+            });
+
+            const data = await res.json();
+            document.getElementById("result").textContent = data.message;
+        }
+    </script>
+</body>
+</html>

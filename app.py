@@ -4,10 +4,15 @@ import os
 
 app = Flask(__name__)
 
+# ルートパスにアクセスされたことを検知
+# '/'と結びついているのはindex()関数
 @app.route('/')
 def index():
-    return render_template('index.html')  # ← あなたのHTMLを表示
-
+    # templatesのhtmlファイルを表示する
+    return render_template('index.html') 
+ 
+# JSから送られてきたJSONデータを受け取る
+# JSサイドで'/send'エンドポインタを指定している
 @app.route('/send', methods=['POST'])
 def send_text():
     # JSから送られたデータを受け取る
@@ -27,9 +32,15 @@ def send_text():
     else:
         json_data = []
 
+    # IDを自動で割り振る
+    next_id = len(json_data) + 1
+
     # 新しいデータを追加
     json_data.append({
+        "id":next_id,
         "text": text,
+        "brailleData":"",
+        "lineNumber":"",
         "time": data.get("time")
     })
 

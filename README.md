@@ -9,7 +9,7 @@ https://www.python.org/downloads/
 pip install Flask
 ```
 
-#実行
+# 実行
 ```
 python app.py
 ```

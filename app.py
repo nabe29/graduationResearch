@@ -4,6 +4,17 @@ import os
 
 app = Flask(__name__)
 
+# 点字変換ライブラリの呼び出し
+def convert_to_braille(text: str):
+    with open("brailleConverter.json", "r", encoding="utf-8") as f:
+        braille_map = json.load(f)
+        result = []
+        for ch in text:
+            # 文字に対応する6点のパターンを取得（未定義は[0,0,0,0,0,0]）
+            pattern = braille_map.get(ch, [0, 0, 0, 0, 0, 0])
+            result.append({"char": ch, "pattern": pattern})
+        return result
+
 # ルートパスにアクセスされたことを検知
 # '/'と結びついているのはindex()関数
 @app.route('/')
@@ -18,6 +29,9 @@ def send_text():
     # JSから送られたデータを受け取る
     data = request.get_json()
     text = data.get("text")
+
+    # 点字変換を実行
+    braille_data = convert_to_braille(text)
 
     # 保存先
     file_path = 'historyText.json'
@@ -39,7 +53,7 @@ def send_text():
     json_data.append({
         "id":next_id,
         "text": text,
-        "brailleData":"",
+        "brailleData":braille_data,
         "lineNumber":"",
         "time": data.get("time")
     })

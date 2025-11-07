@@ -9,5 +9,54 @@
     "brailleData": "",
     "lineNumber": "",
     "time": "2025/11/5 10:31:58"
+  },
+  {
+    "id": 3,
+    "text": "あ",
+    "brailleData": [
+      {
+        "char": "あ",
+        "pattern": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      }
+    ],
+    "lineNumber": "",
+    "time": "2025/11/7 11:57:03"
+  },
+  {
+    "id": 4,
+    "text": "あさ",
+    "brailleData": [
+      {
+        "char": "あ",
+        "pattern": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "char": "さ",
+        "pattern": [
+          0,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      }
+    ],
+    "lineNumber": "",
+    "time": "2025/11/7 12:13:48"
   }
 ]

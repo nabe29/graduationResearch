@@ -4,12 +4,13 @@
 body {
     font-family: "メイリオ", sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 40px 0;
     background: #f3f4f6;
+
     display: flex;
-    justify-content: center;  /* 横中央 */
-    align-items: center;      /* 縦中央 */
-    height: 100vh;            /* 画面高さいっぱい */
+    justify-content: center;
+    /* align-items: flex-start; */
+    /* 上揃え */
 }
 
 /* カードデザイン */
@@ -17,10 +18,16 @@ body {
     background: white;
     padding: 40px 50px;
     border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(111, 111, 111, 0.1);
     text-align: center;
     width: 90%;
-    max-width: 420px; /* スマホ〜PCに対応 */
+    max-width: 1080px;
+
+    display: flex;
+    align-items: center;
+    /* ← 中央寄せ */
+    gap: 50px;
+    /* ← 余白 */
 }
 
 /* タイトル */
@@ -28,6 +35,10 @@ h1 {
     margin-bottom: 24px;
     font-size: 24px;
     color: #333;
+}
+
+.flex-sendBox {
+    width: 60%;
 }
 
 /* 入力欄とボタン */
@@ -42,20 +53,38 @@ input[type="text"] {
 }
 
 /* ボタン */
-button {
-    width: 100%;
+.edit-buttons button {
+    width: 60%;
     padding: 12px;
-    background: #3b82f6;
+    background: #d55454;
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
     transition: 0.2s;
+    margin-bottom: 10px;
 }
 
 button:hover {
-    background: #2563eb;
+    background: #9c3535;
+}
+
+.btn-send {
+    width: 40%;
+    padding: 12px;
+    background: #5481d5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background: #375b9e;
 }
 
 /* 結果表示 */
@@ -63,4 +92,113 @@ button:hover {
     margin-top: 20px;
     font-weight: bold;
     color: #374151;
+}
+
+/* 下部ひらがなボタンの全体配置 */
+.kana-container {
+    margin-top: 30px;
+    width: 100%;
+}
+
+/* ボタンのグリッドレイアウト（スマホ対応） */
+.kana-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 10px;
+}
+
+/* ひらがなボタンデザイン */
+.kana-btn {
+    padding: 12px;
+    font-size: 18px;
+    background: #e5e7eb;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.kana-btn:hover {
+    background: #d1d5db;
+}
+
+.kana-btn:active {
+    background: #9ca3af;
+}
+
+/* ▼ タブ全体 */
+.input-panel {
+    width: 100%;
+    max-height: 60vh;
+    /* 画面の60%まで表示、あとはスクロール */
+    overflow-y: auto;
+    /* スクロール */
+    padding-bottom: 20px;
+    /* 指で押しやすい余白 */
+    border-top: 1px solid #e5e7eb;
+}
+
+/* タブボタン */
+.tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.tab-btn {
+    flex: 1;
+    /* 横幅を均等にする */
+    height: 40px;
+    /* ★高さを統一 */
+    display: flex;
+    align-items: center;
+    /* テキストを縦中央揃え */
+    justify-content: center;
+    /* 横中央揃え */
+    font-size: 16px;
+    border: none;
+    background: #e0e0e0;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.tab-btn.active {
+    background: #4a90e2;
+    color: #fff;
+}
+
+#inputText {
+    pointer-events: none;
+}
+
+/* コンテンツの切り替え */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* 文字ボタンのグリッド */
+.kana-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
+    gap: 8px;
+    padding: 5px 0 20px 0;
+    /* 内側余白調整 */
+}
+
+.kana-grid button {
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    background: #f3f4f6;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.kana-grid button:hover {
+    background: #e5e7eb;
 }

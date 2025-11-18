@@ -19,11 +19,11 @@
             <input type="text" id="inputText" placeholder="文字を入力してください" readonly>
             <!-- 削除ボタン各種 -->
             <div class="edit-buttons">
-                <button onclick="deleteOne()">１文字削除</button>
-                <button onclick="clearAll()">すべて消す</button>
+                <button onclick="deleteOne()">１<ruby>文<rt>も</rt>字<rt>じ</rt>削<rt>さく</rt>除<rt>じょ</rt></ruby></button>
+                <button onclick="clearAll()">すべて<ruby>消<rt>け</rt></ruby>す</button>
             </div>
             <!-- 送信ボタン -->
-            <button onclick="sendText()" class="btn-send">送信</button>
+            <button onclick="sendText()" class="btn-send"><ruby>送<rt>そう</rt>信<rt>しん</rt></ruby></button>
 
             <p id="result"></p>
         </dev>
@@ -34,9 +34,9 @@
                 <button class="tab-btn active" data-target="tab-hiragana">ひらがな</button>
                 <button class="tab-btn" data-target="tab-dakuon">濁音</button>
                 <button class="tab-btn" data-target="tab-sulkySound">拗音</button>
-                <!-- <button class="tab-btn" data-target="tab-number">数字</button>
+                <button class="tab-btn" data-target="tab-number">数字</button>
                 <button class="tab-btn" data-target="tab-alpha">英字</button>
-                <button class="tab-btn" data-target="tab-symbol">記号</button> -->
+                <button class="tab-btn" data-target="tab-symbol">記号</button>
             </div>
 
             <!-- ひらがな -->

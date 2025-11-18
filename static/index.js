@@ -1,3 +1,4 @@
+// /static/index.js
 async function sendText() {
   const input = document.getElementById("inputText").value;
 

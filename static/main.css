@@ -1,21 +1,66 @@
+/* /static/main.css */
+
+/* 画面全体を中央配置 */
 body {
     font-family: "メイリオ", sans-serif;
-    margin: 40px;
-    background-color: #fafafa;
+    margin: 0;
+    padding: 0;
+    background: #f3f4f6;
+    display: flex;
+    justify-content: center;  /* 横中央 */
+    align-items: center;      /* 縦中央 */
+    height: 100vh;            /* 画面高さいっぱい */
 }
 
-input {
-    padding: 8px;
-    margin-right: 8px;
+/* カードデザイン */
+.container {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 420px; /* スマホ〜PCに対応 */
 }
 
+/* タイトル */
+h1 {
+    margin-bottom: 24px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* 入力欄とボタン */
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* ボタン */
 button {
-    padding: 8px 16px;
+    width: 100%;
+    padding: 12px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
+button:hover {
+    background: #2563eb;
+}
+
+/* 結果表示 */
 #result {
     margin-top: 20px;
     font-weight: bold;
-    color: #333;
+    color: #374151;
 }

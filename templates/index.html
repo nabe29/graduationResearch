@@ -1,3 +1,4 @@
+<!-- /templates/index.html -->
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -8,13 +9,109 @@
 </head>
 
 <body>
-    <h1>文字列を送信</h1>
-    <input type="text" id="inputText" placeholder="文字を入力してください">
-    <button onclick="sendText()">送信</button>
+    <div class="container">
 
-    <p id="result"></p>
+        <dev class="flex-sendBox">
+            <h1><ruby>文<rt>も</rt>字<rt>じ</rt>列<rt>れつ</rt></ruby>を<ruby>送<rt>そう</rt>信<rt>しん</rt></ruby></h1>
+            <p><ruby>右<rt>みぎ</rt></ruby>のキーボードから<ruby>文<rt>も</rt>字<rt>じ</rt></ruby>を<ruby>入<rt>にゅう</rt>力<rt>りょく</rt>
+                    </ruby>しよう！</p>
+            <!-- 文字の入力を受け付ける -->
+            <input type="text" id="inputText" placeholder="文字を入力してください" readonly>
+            <!-- 削除ボタン各種 -->
+            <div class="edit-buttons">
+                <button onclick="deleteOne()">１<ruby>文<rt>も</rt>字<rt>じ</rt>削<rt>さく</rt>除<rt>じょ</rt></ruby></button>
+                <button onclick="clearAll()">すべて<ruby>消<rt>け</rt></ruby>す</button>
+            </div>
+            <!-- 送信ボタン -->
+            <button onclick="sendText()" class="btn-send"><ruby>送<rt>そう</rt>信<rt>しん</rt></ruby></button>
+
+            <p id="result"></p>
+        </dev>
+
+        <div class="input-panel">
+            <!-- タブ切り替え -->
+            <div class="tabs">
+                <button class="tab-btn active" data-target="tab-hiragana">ひらがな</button>
+                <button class="tab-btn" data-target="tab-dakuon">濁音</button>
+                <button class="tab-btn" data-target="tab-sulkySound">拗音</button>
+                <button class="tab-btn" data-target="tab-number">数字</button>
+                <button class="tab-btn" data-target="tab-alpha">英字</button>
+                <button class="tab-btn" data-target="tab-symbol">記号</button>
+            </div>
+
+            <!-- ひらがな -->
+            <div id="tab-hiragana" class="tab-content active">
+                <div class="kana-grid">
+                    <!-- 50音 -->
+                    あ い う え お
+                    か き く け こ
+                    さ し す せ そ
+                    た ち つ て と
+                    な に ぬ ね の
+                    は ひ ふ へ ほ
+                    ま み む め も
+                    や ゆ よ
+                    ら り る れ ろ
+                    わ を ん
+                </div>
+            </div>
+
+            <!-- 濁音 -->
+            <div id="tab-dakuon" class="tab-content">
+                <div class="kana-grid">
+                    が ぎ ぐ げ ご
+                    ざ じ ず ぜ ぞ
+                    だ ぢ づ で ど
+                    ば び ぶ べ ぼ
+                    ぱ ぴ ぷ ぺ ぽ
+                </div>
+            </div>
+
+            <!-- 拗音 -->
+            <div id="tab-sulkySound" class="tab-content">
+                <div class="kana-grid">
+                    きゃ きゅ きょ ぎゃ ぎゅ ぎょ
+                    しゃ しゅ しょ じゃ じゅ じょ
+                    ちゃ ちゅ ちょ ぢゃ ぢゅ ぢょ
+                    にゃ にゅ にょ
+                    ひゃ ひゅ ひょ びゃ びゅ びょ
+                    ぴゃ ぴゅ ぴょ
+                    みゃ みゅ みょ
+                    りゃ りゅ りょ
+                </div>
+            </div>
+
+            <!-- 数字 -->
+            <div id="tab-number" class="tab-content">
+                <div class="kana-grid">
+                    0 1 2 3 4 5 6 7 8 9
+                </div>
+            </div>
+
+            <!-- 英字 -->
+            <div id="tab-alpha" class="tab-content">
+                <div class="kana-grid">
+                    a b c d e f g h i j k l m
+                    n o p q r s t u v w x y z
+                </div>
+            </div>
+
+            <!-- 記号 -->
+            <div id="tab-symbol" class="tab-content">
+                <div class="kana-grid">
+                    ？ ！ 。 、 ー っ
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
 
     <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <script src="{{ url_for('static', filename='chackHiragana') }}"></script>
+
 </body>
 
 </html>

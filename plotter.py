@@ -8,13 +8,16 @@ BAUD_RATE = 115200
 DELAY_DOT = 0.8
 
 # ----- Arduino 接続 -----
-ser = serial.Serial(COM_PORT, BAUD_RATE)
-time.sleep(2)
+def connect_arduino(port=COM_PORT, baud=BAUD_RATE):
+    ser = serial.Serial(port, baud)
+    time.sleep(2)
+    return ser
+
+ser = connect_arduino()
 
 # ----- JSON 読み込み -----
 with open("brailleConverter.json", encoding="utf-8") as f:
     BRAILLE = json.load(f)
-
 
 # ----- 点字ドット送信 -----
 def send_dot(d):
@@ -22,7 +25,6 @@ def send_dot(d):
         ser.write(f"{d}\n".encode())
         print(f"Sent dot: {d}")
         time.sleep(DELAY_DOT)
-
 
 # ----- 文字打刻 -----
 def send_char(ch):
@@ -34,13 +36,13 @@ def send_char(ch):
         if dot_on == 1:
             send_dot(i)
 
-
-def send_text(text):
+def send_text_input(text):
+    """文章を打刻する"""
     for ch in text:
         if ch == "\n":
             continue
         send_char(ch)
-
+    return_to_home()
 
 # ----- pattern を直接打刻 -----
 def send_pattern(pattern):
@@ -48,40 +50,35 @@ def send_pattern(pattern):
         if dot_on == 1:
             send_dot(i)
 
-
 def send_braille_data(braille_data):
     for item in braille_data:
         send_pattern(item["pattern"])
+    return_to_home()
 
+# ----- 履歴IDから打刻 -----
+def send_history_by_id(target_id):
+    """履歴JSONから指定IDのbrailleDataを打刻"""
+    with open("historyText.json", "r", encoding="utf-8") as f:
+        history = json.load(f)
 
-# ----- メイン実行 -----
-if __name__ == "__main__":
-    mode = input("1: 文字入力打刻  2: 履歴ID打刻  選択してください: ")
+    for item in history:
+        if item["id"] == target_id:
+            print(f"打刻開始: ID={target_id}")
+            send_braille_data(item["brailleData"])
+            return
 
-    if mode == "1":
-        text = input("打刻する文章を入力してください: ")
-        send_text(text)
-    elif mode == "2":
-        # 履歴JSON読み込み
-        with open("historyText.json", "r", encoding="utf-8") as f:
-            history = json.load(f)
+    print(f"指定したID {target_id} が見つかりません")
 
-        target_id = int(input("打刻したい履歴IDを入力してください: "))
-        for item in history:
-            if item["id"] == target_id:
-                braille_data = item["brailleData"]
-                break
-        else:
-            print("指定したIDが見つかりません")
-            exit()
-
-        print("打刻開始")
-        send_braille_data(braille_data)
-    else:
-        print("無効な選択です")
-        exit()
-
-    # 原点に戻す
+# ----- 原点復帰 -----
+def return_to_home():
     ser.write(b"HOME\n")
     time.sleep(2)
     print("原点に戻りました")
+
+# ----- メイン例 -----
+if __name__ == "__main__":
+    # 文字列打刻例
+    send_text_input("こんにちは")
+
+    # 履歴ID打刻例
+    send_history_by_id(3)

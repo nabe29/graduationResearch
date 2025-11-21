@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 import json
 import os
+import plotter
 
 app = Flask(__name__)
 
@@ -25,7 +26,7 @@ def index():
 # JSから送られてきたJSONデータを受け取る
 # JSサイドで'/send'エンドポインタを指定している
 @app.route('/send', methods=['POST'])
-def send_text():
+def send_textPy():
     # JSから送られたデータを受け取る
     data = request.get_json()
     text = data.get("text")
@@ -61,6 +62,9 @@ def send_text():
     # JSONとして保存
     with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(json_data, f, ensure_ascii=False, indent=2)
+
+    # 発火ポイント
+    plotter.send_history_by_id(next_id)
 
     return jsonify({"message": f"'{text}' を保存しました！"})
 

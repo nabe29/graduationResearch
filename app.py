@@ -64,7 +64,7 @@ def send_textPy():
         json.dump(json_data, f, ensure_ascii=False, indent=2)
 
     # 発火ポイント
-    plotter.send_history_by_id(next_id)
+    # plotter.send_history_by_id(next_id)
 
     return jsonify({"message": f"'{text}' を保存しました！"})
 

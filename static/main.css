@@ -24,10 +24,20 @@ body {
     max-width: 1080px;
 
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     /* ← 中央寄せ */
     gap: 50px;
     /* ← 余白 */
+}
+
+.img-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    vertical-align: middle;
+    /* ボタン内で縦中央揃え */
+    margin-right: 8px;
+    /* 文字との間にスペース */
 }
 
 /* タイトル */
@@ -39,6 +49,7 @@ h1 {
 
 .flex-sendBox {
     width: 60%;
+    align-self: center;
 }
 
 /* 入力欄とボタン */
@@ -83,7 +94,7 @@ button:hover {
     margin-bottom: 10px;
 }
 
-button:hover {
+.btn-send:hover {
     background: #375b9e;
 }
 
